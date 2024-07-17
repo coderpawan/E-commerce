@@ -8,11 +8,9 @@ const generateToken = (res, userId) => {
   // Set JWT as an HTTP-Only Cookie
   res.cookie("jwt", token, {
     httpOnly: true,
-    secure: true,  
-    sameSite: "None",  
-    maxAge: 30 * 24 * 60 * 60 * 1000, 
-    domain: ".vercel.app", 
-    path: "/", 
+    secure: true,
+    maxAge: 1000 * 60 * 60 * 48,
+    sameSite: "none",
   });
 
   return token;
