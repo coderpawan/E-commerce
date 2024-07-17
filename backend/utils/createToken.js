@@ -6,12 +6,10 @@ const generateToken = (res, userId) => {
   });
 
   // Set JWT as an HTTP-Only Cookie
- res.cookie("jwt", token, {
+  res.cookie("jwt", token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV !== "development", // Ensure HTTPS in production
-    sameSite: "strict", // Adjust as necessary
+    secure: true,  // Set secure to true for HTTPS environments
     maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days in milliseconds
-    path: "/", // Set cookie path to root
   });
 
   return token;
