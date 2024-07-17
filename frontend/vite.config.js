@@ -6,8 +6,8 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/api/": "https://e-commerce-backend-five-jade.vercel.app/",
-      "/uploads/": "https://e-commerce-backend-five-jade.vercel.app/",
+      "/api/": "https://e-commerce-backend-five-jade.vercel.app",
+      "/uploads/": "https://e-commerce-backend-five-jade.vercel.app",
     },
   },
 });
