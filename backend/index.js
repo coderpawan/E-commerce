@@ -28,21 +28,22 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-app.use(function (req, res, next) {
-  let allowedOrigins = ["*"]; // list of url-s
-  let origin = req.headers.origin;
-  if (allowedOrigins.indexOf(origin) > -1) {
-    res.setHeader("Access-Control-Allow-Origin", origin);
-  }
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  res.header("Access-Control-Expose-Headers", "Content-Disposition");
-  next();
-});
+const allowedOrigins = ["https://e-commerce-frontend-iota-hazel.vercel.app"];
+const corsOptions = {
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps, curl, postman)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg =
+        "The CORS policy for this site does not allow access from the specified Origin.";
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  credentials: true, // Enable if you need to pass cookies
+};
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 // Routes
 app.use("/api/users", userRoutes);
