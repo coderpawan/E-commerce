@@ -18,7 +18,7 @@ const Home = () => {
         </Message>
       ) : (
         <>
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center -top-0 fixed bg-black w-full py-4 z-50">
             <h1 className="ml-[20rem] text-[3rem]">Special Products</h1>
 
             <Link
@@ -29,7 +29,7 @@ const Home = () => {
             </Link>
           </div>
 
-          <div>
+          <div className="mt-24">
             <div className="grid grid-cols-3 gap-3 mx-32 justify-center my-[2rem]">
               {data.products.map((product) => (
                 <div key={product._id} className="">
