@@ -28,14 +28,21 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-const corsOptions = {
-  origin: "*", // Modify as needed
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true,
-};
+app.use(function (req, res, next) {
+  let allowedOrigins = ["*"]; // list of url-s
+  let origin = req.headers.origin;
+  if (allowedOrigins.indexOf(origin) > -1) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  }
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.header("Access-Control-Expose-Headers", "Content-Disposition");
+  next();
+});
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 // Routes
 app.use("/api/users", userRoutes);
