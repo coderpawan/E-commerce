@@ -10,7 +10,7 @@
         "start": "node index.js"
     },
     "keywords": [],
-    "author": "HuXn WebDev",
+    "author": "Pawan",
     "license": "ISC",
     "dependencies": {
         "bcryptjs": "^2.4.3",
